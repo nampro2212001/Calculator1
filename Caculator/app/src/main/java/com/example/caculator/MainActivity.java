@@ -4,185 +4,273 @@ package com.example.caculator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
-
-    private static final int STATE_OPERAND_FIRST = 1;
-    private static final int STATE_OPERAND_SECOND = 2;
-    private int state;
-    private int operand1, operand2;
-    private int operator;
-    private TextView textResult;
-
-
+    private TextView textResult ;
+    private TextView textCalculation;
+    private Button button0,button1,button2,button3,button4,button5,button6,button7,button8,button9,buttonC,buttonCE,buttonBS,buttonAdd,buttonDiv,buttonMul,buttonSub,buttonEqual;
+    private  String calculation = "";
+    private  String calculation1 = "";
+    private  String calculation2 = "";
+    private int state =1, state1 = 0;
+    private int op1;
+    private int op2;
+    private int cal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         textResult = findViewById(R.id.textResult);
+        textCalculation = findViewById(R.id.textCalculator);
 
-        findViewById(R.id.button0).setOnClickListener(this);
-        findViewById(R.id.button1).setOnClickListener(this);
-        findViewById(R.id.button2).setOnClickListener(this);
-        findViewById(R.id.button3).setOnClickListener(this);
-        findViewById(R.id.button4).setOnClickListener(this);
-        findViewById(R.id.button5).setOnClickListener(this);
-        findViewById(R.id.button6).setOnClickListener(this);
-        findViewById(R.id.button7).setOnClickListener(this);
-        findViewById(R.id.button8).setOnClickListener(this);
-        findViewById(R.id.button9).setOnClickListener(this);
+        button0 = findViewById(R.id.button0);
+        button1 = findViewById(R.id.button1);
+        button2 = findViewById(R.id.button2);
+        button3 = findViewById(R.id.button3);
+        button4 = findViewById(R.id.button4);
+        button5 = findViewById(R.id.button5);
+        button6 = findViewById(R.id.button6);
+        button7 = findViewById(R.id.button7);
+        button8 = findViewById(R.id.button8);
+        button9 = findViewById(R.id.button9);
 
-        findViewById(R.id.buttonadd).setOnClickListener(this);
-        findViewById(R.id.buttonsub).setOnClickListener(this);
-        findViewById(R.id.buttonmul).setOnClickListener(this);
-        findViewById(R.id.buttondiv).setOnClickListener(this);
+        buttonC = findViewById(R.id.buttonC);
+        buttonCE = findViewById(R.id.buttonCE);
+        buttonBS = findViewById(R.id.buttonBS);
 
-        findViewById(R.id.buttonequal).setOnClickListener(this);
+        buttonAdd = findViewById(R.id.buttonAdd);
+        buttonDiv = findViewById(R.id.buttonDiv);
+        buttonMul = findViewById(R.id.buttonMul);
+        buttonSub = findViewById(R.id.buttonSub);
 
-        findViewById(R.id.buttonBS).setOnClickListener(this);
-        findViewById(R.id.buttonC).setOnClickListener(this);
-        findViewById(R.id.buttonCE).setOnClickListener(this);
+        buttonEqual = findViewById(R.id.buttonEqual);
 
-        state = STATE_OPERAND_FIRST;
-        operand1 = operand2 = 0;
-        operator = Operator.INIT;
-        textResult.setText(String.valueOf(0));
+        button0.setOnClickListener(this);
+        button1.setOnClickListener(this);
+        button2.setOnClickListener(this);
+        button3.setOnClickListener(this);
+        button4.setOnClickListener(this);
+        button5.setOnClickListener(this);
+        button6.setOnClickListener(this);
+        button7.setOnClickListener(this);
+        button8.setOnClickListener(this);
+        button9.setOnClickListener(this);
+        buttonAdd.setOnClickListener(this);
+        buttonSub.setOnClickListener(this);
+        buttonDiv.setOnClickListener(this);
+        buttonMul.setOnClickListener(this);
+        buttonEqual.setOnClickListener(this);
+        buttonC.setOnClickListener(this);
+        buttonCE.setOnClickListener(this);
+        buttonBS.setOnClickListener(this);
     }
-    }
-
-
 
     @Override
-    public void onClick(View view) {
-        int id = view.getId();
+    public void onClick(View v) {
+        int id = v.getId() ;
+        switch (id){
+            case R.id.button0:
+            case R.id.button1:
+            case R.id.button2:
+            case R.id.button3:
+            case R.id.button4:
+            case R.id.button5:
+            case R.id.button6:
+            case R.id.button7:
+            case R.id.button8:
+            case R.id.button9:
+                state1 = 0;
+                calculation = calculation + ((Button)v).getText();
+                calculation1 = calculation1 + ((Button)v).getText();
+                textCalculation.setText(calculation);
+                break;
 
-        switch (id) {
-            /**
-             * Không để hard code như này nhé, cần để vào hằng số
-             * Có thể tạo 1 class khác lưu các loại operators, và 1 class lưu các loại state
-             */
-            case R.id.buttonadd:
-                selectOperator(Operator.ADD);
+            case R.id.buttonAdd:
+                cal = 1;
+                if(state == 1){
+                    if(calculation=="" && state1 !=1){
+                        break;
+                    }
+                    else if(state1 ==1){
+                        calculation = textResult.getText().toString() + ((Button)v).getText();
+                        //Log.v("TEST", calculation);
+                        textCalculation.setText(calculation);
+                        break;
+                    }
+                    else {
+                        state = 2;
+                        op1 = Integer.parseInt(calculation1);
+                    }
+                }
+                calculation1 ="";
+                calculation = calculation + ((Button)v).getText();
+                calculation2 = calculation;
+                textCalculation.setText(calculation);
                 break;
-            case R.id.buttonsub:
-                selectOperator(Operator.SUB);
+            case R.id.buttonSub:
+                cal = 2;
+                if(state == 1){
+                    if(calculation=="" && state1 !=1){
+                        break;
+                    }
+                    else if(state1 ==1){
+                        calculation = textResult.getText().toString() + ((Button)v).getText();
+                        //Log.v("TEST", calculation);
+                        textCalculation.setText(calculation);
+                        break;
+                    }
+                    else {
+                        state = 2;
+                        op1 = Integer.parseInt(calculation1);
+                    }
+                }
+                calculation1 ="";
+                calculation = calculation + ((Button)v).getText();
+                calculation2 = calculation;
+                textCalculation.setText(calculation);
                 break;
-            case R.id.buttonmul:
-                selectOperator(Operator.MUL);
+            case R.id.buttonMul:
+                cal = 3;
+                if(state == 1){
+                    if(calculation=="" && state1 !=1){
+                        break;
+                    }
+                    else if(state1 ==1){
+                        calculation = textResult.getText().toString() + ((Button)v).getText();
+                        //Log.v("TEST", calculation);
+                        textCalculation.setText(calculation);
+                        break;
+                    }
+                    else {
+                        state = 2;
+                        op1 = Integer.parseInt(calculation1);
+                    }
+                }
+                calculation1 ="";
+                calculation = calculation + ((Button)v).getText();
+                calculation2 = calculation;
+                textCalculation.setText(calculation);
                 break;
-            case R.id.buttondiv:
-                selectOperator(Operator.DIV);
+            case R.id.buttonDiv:
+                cal = 4;
+                if(state == 1){
+                    if(calculation=="" && state1 !=1){
+                        break;
+                    }
+                    else if(state1 ==1){
+                        calculation = textResult.getText().toString() + ((Button)v).getText();
+                        //Log.v("TEST", calculation);
+                        textCalculation.setText(calculation);
+                        break;
+                    }
+                    else {
+                        state = 2;
+                        op1 = Integer.parseInt(calculation1);
+                    }
+                }
+                calculation1 ="";
+                calculation = calculation + ((Button)v).getText();
+                calculation2 = calculation;
+                textCalculation.setText(calculation);
                 break;
-            case R.id.buttonequal:
-                calculateResult();
-                break;
-            case R.id.buttonBS:
-                removeDigit();
-                break;
-            case R.id.buttonCE:
-                clearCurrentOperand();
+            case R.id.buttonEqual:
+                if(calculation =="+" ||
+                   calculation =="-" ||
+                   calculation =="*" ||
+                   calculation =="/"){
+                    break;
+                }
+                if(state ==1 ){
+                    textResult.setText(calculation);
+                }
+                if(calculation == "" && state ==1){
+                    textCalculation.setText(calculation);
+                    break;
+                }
+                if(textCalculation.getText().toString() == "" && state ==1){
+                    textCalculation.setText(calculation);
+                    break;
+                }
+                if(state==2 && calculation1 ==""){
+                    break;
+                }
+                op2 = Integer.parseInt(calculation1);
+                switch (cal) {
+                    case 1:
+                        textResult.setText(Integer.toString(op1 + op2));
+                        textCalculation.setText("");
+                        op1 = op1+op2;
+                        break;
+                    case 2:
+                        textResult.setText(Integer.toString(op1 - op2));
+                        textCalculation.setText("");
+                        op1 = op1-op2;
+                        break;
+                    case 3:
+                        textResult.setText(Integer.toString(op1 * op2));
+                        textCalculation.setText("");
+                        op1 = op1*op2;
+                        break;
+                    case 4:
+                        if(op2 ==0){
+                            textResult.setText("Syntax error");
+                            textCalculation.setText("");
+                            break;
+                        }
+                        textResult.setText(Double.toString((double) op1 / op2));
+                        textCalculation.setText("");
+                        op1 = op1/op2;
+                        break;
+                }
+                state=1;
+                state1 = 1;
+                calculation = "";
+                calculation1 = "";
                 break;
             case R.id.buttonC:
-                state = STATE_OPERAND_FIRST;
-                operand1 = operand2 = 0;
-                operator = Operator.INIT;
-                textResult.setText(String.valueOf(0));
+                if(state==1){
+                    calculation ="";
+                    calculation1 ="";
+                    textCalculation.setText(calculation);
+                }
+                if(state ==2){
+                    calculation = calculation2;
+                    calculation1 ="";
+                    textCalculation.setText(calculation);
+                }
                 break;
+            case R.id.buttonCE:
+                calculation ="";
+                calculation1 = "";
+                state1 = 0;
+                state = 1;
+                op1=0;
+                textCalculation.setText(calculation);
+                textResult.setText(calculation);
+                break;
+            case R.id.buttonBS:
+                if(textCalculation.getText().toString() == "0" || state ==1){
+                    textCalculation.setText(calculation);
+                    break;
+                }
+                if(textCalculation.getText().toString() == ""){
+                    textCalculation.setText(calculation);
+                    break;
+                }
+                else {
+                    calculation = calculation.substring(0, calculation.length() - 1);
+                    calculation1 = calculation1.substring(0, calculation1.length() - 1);
+                    textCalculation.setText(calculation);
+                    break;
+                }
             default:
-                //Sử dụng parse Int thay vì valueOf để tránh tạo thêm các biến rác trong quá trình sinh byte code
-                addDigit(Integer.parseInt(((Button)view).getText().toString()));
-        }
-    }
-
-    private void selectOperator(int _op) {
-        operator = _op;
-        state = STATE_OPERAND_SECOND;
-    }
-
-    private void addDigit(int digit) {
-        if (state == STATE_OPERAND_FIRST) {
-            if (operand1 < 0)
-                operand1 = operand1 * 10 - digit;
-            else
-                operand1 = operand1 * 10 + digit;
-            textResult.setText(String.valueOf(operand1));
-        }
-        else {
-            if (operand2 < 0)
-                operand2 = operand2 * 10 - digit;
-            else
-                operand2 = operand2 * 10 + digit;
-            textResult.setText(String.valueOf(operand2));
-        }
-    }
-
-    private void calculateResult() {
-        /**
-         * Nếu các khối lệnh if else có 3 nhánh trở lên, dùng switch-case để khiến code dễ đọc hơn
-         *          switch (operator){
-         *             case Operator.ADD: result = operand1 + operand2; break;
-         *         }
-         */
-        int result = 0;
-        switch (operator) {
-            case Operator.ADD:
-                result = operand1 + operand2;
-                break;
-            case Operator.SUB:
-                result = operand1 - operand2;
-                break;
-            case Operator.MUL:
-                result = operand1 * operand2;
-                break;
-            case Operator.DIV:
-                if (operand2 != 0)
-                    result = operand1 / operand2;
                 break;
         }
 
-        /**
-         * Những đoạn text hiển thị cho người dùng nhìn thấy thì nên đặt trong strings.xml để tiện cho việc chuyển đổi ngôn ngữ
-         * String finalResult = (operator == 4 && operand2 == 0) ? getString(R.string.msg_error) : result.toString();
-         */
-        if (operator == Operator.DIV && operand2 == 0)
-            textResult.setText(R.string.msg_error);
-        else
-            textResult.setText(String.valueOf(result));
-
-        // Quay lai trang thai 1
-        /**
-         * Đặt tên rõ ràng state để khi code không cần phải comment mà vẫn hiểu được code
-         * state = States.SOME_THING;
-         */
-        state = STATE_OPERAND_FIRST;
-        operand1 = 0;
-        operand2 = 0;
-        operator = Operator.INIT;
-    }
-
-    private void removeDigit() {
-        if (state == STATE_OPERAND_FIRST) {
-            operand1 = operand1 / 10;
-            textResult.setText(String.valueOf(operand1));
-        }
-        else {
-            operand2 = operand2 / 10;
-            textResult.setText(String.valueOf(operand2));
-        }
-    }
-
-    private void clearCurrentOperand() {
-        if (state == STATE_OPERAND_FIRST) {
-            operand1 = 0;
-            textResult.setText(String.valueOf(operand1));
-        }
-        else {
-            operand2 = 0;
-            textResult.setText(String.valueOf(operand2));
-        }
     }
 }

@@ -245,7 +245,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/buttondiv"
+        android:id="@+id/buttonDiv"
         android:layout_width="0dp"
         android:layout_height="73dp"
         android:insetLeft="6dp"
@@ -256,14 +256,14 @@
         app:backgroundTint="#00BCD4"
         app:elevation="6dp"
         app:layout_constraintBottom_toBottomOf="@+id/buttonC"
-        app:layout_constraintEnd_toEndOf="@+id/buttonmul"
+        app:layout_constraintEnd_toEndOf="@+id/buttonMul"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/buttonmul"
+        app:layout_constraintStart_toStartOf="@+id/buttonMul"
         app:layout_constraintTop_toTopOf="@+id/buttonC"
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/buttonmul"
+        android:id="@+id/buttonMul"
         android:layout_width="0dp"
         android:layout_height="73dp"
         android:layout_marginBottom="90dp"
@@ -273,14 +273,14 @@
         android:textSize="30dp"
         app:backgroundTint="#00BCD4"
         app:layout_constraintBottom_toBottomOf="@+id/button9"
-        app:layout_constraintEnd_toEndOf="@+id/buttonsub"
+        app:layout_constraintEnd_toEndOf="@+id/buttonSub"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/button9"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/buttonsub"
+        android:id="@+id/buttonSub"
         android:layout_width="0dp"
         android:layout_height="73dp"
         android:insetLeft="4dp"
@@ -289,14 +289,14 @@
         android:textSize="30dp"
         app:backgroundTint="#00BCD4"
         app:layout_constraintBottom_toBottomOf="@+id/button6"
-        app:layout_constraintEnd_toEndOf="@+id/buttonadd"
+        app:layout_constraintEnd_toEndOf="@+id/buttonAdd"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/buttonadd"
+        app:layout_constraintStart_toStartOf="@+id/buttonAdd"
         app:layout_constraintTop_toTopOf="@+id/button6"
         app:layout_constraintVertical_bias="0.405" />
 
     <Button
-        android:id="@+id/buttonadd"
+        android:id="@+id/buttonAdd"
         android:layout_width="0dp"
         android:layout_height="73dp"
         android:insetLeft="4dp"
@@ -305,14 +305,14 @@
         android:textSize="30dp"
         app:backgroundTint="#00BCD4"
         app:layout_constraintBottom_toBottomOf="@+id/button3"
-        app:layout_constraintEnd_toEndOf="@+id/buttonequal"
+        app:layout_constraintEnd_toEndOf="@+id/buttonEqual"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/buttonequal"
+        app:layout_constraintStart_toStartOf="@+id/buttonEqual"
         app:layout_constraintTop_toTopOf="@+id/button3"
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/buttonequal"
+        android:id="@+id/buttonEqual"
         android:layout_width="0dp"
         android:layout_height="73dp"
         android:insetLeft="4dp"
@@ -329,7 +329,24 @@
         android:id="@+id/textResult"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="bottom|end"
+        android:padding="8dp"
+        android:text="0"
+        android:textSize="70dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textCalculator"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="90dp"
         android:gravity="bottom|end"
         android:padding="8dp"
         android:text="0"
@@ -343,3 +360,6 @@
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
